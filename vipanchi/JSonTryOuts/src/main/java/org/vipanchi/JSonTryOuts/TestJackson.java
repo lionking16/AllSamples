@@ -3,10 +3,12 @@
  */
 package org.vipanchi.JSonTryOuts;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -17,9 +19,9 @@ public class TestJackson {
 
 	/**
 	 * @param args
-	 * @throws JsonProcessingException 
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws JsonProcessingException {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		ObjectMapper om = new ObjectMapper();
 		Map<String,Object> userData = new HashMap<String,Object>();
@@ -33,7 +35,11 @@ public class TestJackson {
 		
 		String jSonData = om.writeValueAsString(userData);
 		
+		Map<String, Object> checkData = new HashMap<String, Object> ();
+		checkData = om.readValue(jSonData.getBytes(), new TypeReference<Map<String, Object>>(){});
+		
 		System.out.println(jSonData);
+		System.out.println(checkData);
 	}
 
 }
