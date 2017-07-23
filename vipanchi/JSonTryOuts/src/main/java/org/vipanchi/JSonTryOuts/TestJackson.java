@@ -39,6 +39,9 @@ public class TestJackson {
 		
 		System.out.println(jSonData);
 		System.out.println(checkData);
+		
+		if(checkData.equals(userData)) System.out.println("True");
+		else System.out.println("False");
 	}
 
 }
